@@ -1,0 +1,5 @@
+name: workout-planner-app
+
+services:
+  user:
+    image: microservices/user
