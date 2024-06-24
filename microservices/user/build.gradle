@@ -21,8 +21,34 @@ repositories {
 	mavenCentral()
 }
 
+ext {
+	mapstructVersion = "1.5.3.Final"
+	lombockMapstructBindingVersion = "0.2.0"
+}
+
+
+
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-webflux'
+
+	// MapStruct dependencies
+	implementation "org.mapstruct:mapstruct:${mapstructVersion}"
+	compileOnly "org.mapstruct:mapstruct-processor:${mapstructVersion}"
+	annotationProcessor "org.mapstruct:mapstruct-processor:${mapstructVersion}"
+	testAnnotationProcessor "org.mapstruct:mapstruct-processor:${mapstructVersion}"
+
+	// Lombok dependencies
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok:1.18.24'
+	testCompileOnly 'org.projectlombok:lombok'
+	testAnnotationProcessor 'org.projectlombok:lombok:1.18.24'
+
+	// Lombok and MapStruct annotation processor
+	annotationProcessor "org.projectlombok:lombok-mapstruct-binding:${lombockMapstructBindingVersion}"
+
+	// MongoDB
+	implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
+
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'io.projectreactor:reactor-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'

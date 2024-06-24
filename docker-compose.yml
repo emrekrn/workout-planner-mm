@@ -2,4 +2,16 @@ name: workout-planner-app
 
 services:
   user:
-    image: microservices/user
+    build: microservices/user
+    mem_limit: 512m
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+
+  mongodb:
+    image: mongo:6.0.4
+    mem_limit: 512m
+    ports:
+      - "27017:27017"
+    command: mongod
