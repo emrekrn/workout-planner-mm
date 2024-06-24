@@ -1,0 +1,19 @@
+# IntelliJ IDEA
+.idea/
+
+# Gradle specific files
+.gradle/
+build/
+
+# Maven specific files (if used in combination with Gradle)
+mvnw
+mvnw.cmd
+
+# Spring Boot specific files
+*.iml
+*.ipr
+*.iws
+
+# Exclude generated directories and files from modules
+**/build/
+**/out/
