@@ -1,4 +1,4 @@
-package com.emrecan.workoutplanner.microservices.user.persistance;
+package com.emrecan.workoutplanner.microservices.user.persistence;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -10,6 +10,7 @@ import java.util.List;
 public interface UserMapper {
 
     @Mappings({
+            @Mapping(target = "userId"),
             @Mapping(target = "username"),
             @Mapping(target = "password"),
             @Mapping(target = "email")
@@ -19,12 +20,13 @@ public interface UserMapper {
     @Mappings({
             @Mapping(target = "id", ignore = true),
             @Mapping(target = "version", ignore = true),
+            @Mapping(target = "userId", ignore = true),
             @Mapping(target = "username"),
             @Mapping(target = "password"),
             @Mapping(target = "email")
     })
     UserEntity apiToEntity(UserDto userDto);
 
-    List<UserDto> entityListToApiList(List<UserEntity> entity);
+    List<UserDto> entityListToApiList(List<UserEntity> entities);
 
 }

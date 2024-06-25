@@ -1,8 +1,9 @@
-package com.emrecan.workoutplanner.microservices.user.persistance;
+package com.emrecan.workoutplanner.microservices.user.persistence;
 
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Version;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 
@@ -15,6 +16,8 @@ public class UserEntity {
     @Version
     private Long version;
 
+    @Indexed(unique = true)
+    private String userId;
     private String username;
     private String password;
     private String email;

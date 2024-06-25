@@ -1,7 +1,7 @@
-package com.emrecan.workoutplanner.microservices.user.controllers;
+package com.emrecan.workoutplanner.microservices.user.controller;
 
-import com.emrecan.workoutplanner.microservices.user.persistance.UserDto;
-import com.emrecan.workoutplanner.microservices.user.services.UserService;
+import com.emrecan.workoutplanner.microservices.user.persistence.UserDto;
+import com.emrecan.workoutplanner.microservices.user.service.UserService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

@@ -1,6 +1,6 @@
-package com.emrecan.workoutplanner.microservices.user.services;
+package com.emrecan.workoutplanner.microservices.user.service;
 
-import com.emrecan.workoutplanner.microservices.user.persistance.UserDto;
+import com.emrecan.workoutplanner.microservices.user.persistence.UserDto;
 
 import java.util.List;
 

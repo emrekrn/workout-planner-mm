@@ -1,6 +1,6 @@
-package com.emrecan.workoutplanner.microservices.user.repositories;
+package com.emrecan.workoutplanner.microservices.user.repositoriy;
 
-import com.emrecan.workoutplanner.microservices.user.persistance.UserEntity;
+import com.emrecan.workoutplanner.microservices.user.persistence.UserEntity;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

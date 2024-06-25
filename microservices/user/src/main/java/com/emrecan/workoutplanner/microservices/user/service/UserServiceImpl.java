@@ -1,9 +1,9 @@
-package com.emrecan.workoutplanner.microservices.user.services;
+package com.emrecan.workoutplanner.microservices.user.service;
 
-import com.emrecan.workoutplanner.microservices.user.persistance.UserDto;
-import com.emrecan.workoutplanner.microservices.user.persistance.UserEntity;
-import com.emrecan.workoutplanner.microservices.user.persistance.UserMapper;
-import com.emrecan.workoutplanner.microservices.user.repositories.UserRepository;
+import com.emrecan.workoutplanner.microservices.user.persistence.UserDto;
+import com.emrecan.workoutplanner.microservices.user.persistence.UserEntity;
+import com.emrecan.workoutplanner.microservices.user.persistence.UserMapper;
+import com.emrecan.workoutplanner.microservices.user.repositoriy.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
