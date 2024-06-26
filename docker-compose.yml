@@ -4,8 +4,13 @@ services:
   user:
     build: microservices/user
     mem_limit: 512m
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+  workout:
+    build: microservices/workout
+    mem_limit: 512m
     ports:
-      - "8080:8080"
+      - 8080:8080
     environment:
       - SPRING_PROFILES_ACTIVE=docker
 
