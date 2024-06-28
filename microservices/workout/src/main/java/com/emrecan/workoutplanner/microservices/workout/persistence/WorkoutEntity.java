@@ -20,6 +20,7 @@ public class WorkoutEntity {
     private long version;
     private String workoutName;
     private String workoutDescription;
+    private String userId;
     @CreatedDate
     private LocalDateTime createdAt;
     @LastModifiedDate

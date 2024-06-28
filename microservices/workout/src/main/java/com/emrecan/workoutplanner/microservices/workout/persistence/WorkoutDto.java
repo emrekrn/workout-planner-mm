@@ -10,5 +10,6 @@ public class WorkoutDto {
     private String workoutId;
     private String workoutName;
     private String workoutDescription;
+    private String userId;
     private LocalDate createdAt;
 }
