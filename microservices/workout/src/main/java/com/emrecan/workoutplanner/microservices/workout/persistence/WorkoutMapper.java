@@ -10,6 +10,9 @@ import java.util.List;
 public interface WorkoutMapper {
 
     WorkoutDto entityToDto(WorkoutEntity workoutEntity);
+    @Mappings({
+            @Mapping(target = "version", ignore = true),
+    })
     WorkoutEntity dtoToEntity(WorkoutDto workoutDto);
     List<WorkoutDto> entitiesToDtos(List<WorkoutEntity> workoutEntities);
     List<WorkoutEntity> dtosToEntities(List<WorkoutDto> workoutDtos);

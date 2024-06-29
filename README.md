@@ -1,6 +1,6 @@
 ## Workout Planner App Backend
 
-Project
+Project URL: https://github.com/users/emrekrn/projects/5/views/1
 
 Microservices:
  - User Service

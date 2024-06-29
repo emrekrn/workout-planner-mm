@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
-@RestController("/workouts")
+@CrossOrigin
+@RestController
+@RequestMapping("/workouts")
 public class WorkoutController {
 
     WorkoutService workoutService;
@@ -18,7 +20,7 @@ public class WorkoutController {
         this.workoutService = workoutService;
     }
 
-    @GetMapping("/")
+    @GetMapping("/user/{userId}")
     public ResponseEntity<List<WorkoutDto>> getWorkoutsByUserId(@PathVariable String userId) {
         List<WorkoutDto> workouts = workoutService.getAllWorkoutsByUserId(userId);
         return new ResponseEntity<>(workouts, HttpStatus.OK);
@@ -40,14 +42,14 @@ public class WorkoutController {
     }
 
     @DeleteMapping("/")
-    public ResponseEntity<> deleteWorkout(String workoutId) {
+    public HttpStatus deleteWorkout(String workoutId) {
         boolean isDeleted = workoutService.deleteWorkout(workoutId);
 
         if (isDeleted) {
-            return new ResponseEntity<>(HttpStatus.OK);
+            return HttpStatus.OK;
         }
         else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return HttpStatus.NOT_FOUND;
         }
     }
 }
