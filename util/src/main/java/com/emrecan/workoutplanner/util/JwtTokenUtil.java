@@ -1,4 +1,4 @@
-package com.emrecan.jwt.util;
+package com.emrecan.workoutplanner.util;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
