@@ -9,4 +9,5 @@ public interface UserService {
     List<UserDto> getAllUsers();
     UserDto getUserById(String id);
     UserDto createUser(UserDto user);
+    boolean isValidUser(String username, String password);
 }

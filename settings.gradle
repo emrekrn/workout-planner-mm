@@ -1,6 +1,6 @@
 rootProject.name = "workout-planner-mm"
 
+include ':util'
 include ':microservices:user'
 include ':microservices:workout'
 include ':microservices:composite-service'
-include ':util'
