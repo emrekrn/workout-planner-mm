@@ -1,19 +1,3 @@
-spring.data.mongodb:
-  host: localhost
-  port: 27017
-  database: user-db
-
-logging:
-  level:
-    org.springframework.data.mongodb.core.MongoTemplate: DEBUG
-
----
-
-spring:
-  config:
-    activate:
-      on-profile: docker
-
 
 spring.data.mongodb.host: mongodb
 server:

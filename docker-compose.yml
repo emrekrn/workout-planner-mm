@@ -1,18 +1,19 @@
 name: workout-planner-app
 
 services:
-  user:
-    build: microservices/user
-    mem_limit: 512m
-    environment:
-      - SPRING_PROFILES_ACTIVE=docker
-  workout:
-    build: microservices/workout
+  composite-service:
+    build: microservices/composite-service
     mem_limit: 512m
     ports:
       - 8080:8080
-    environment:
-      - SPRING_PROFILES_ACTIVE=docker
+
+  user:
+    build: microservices/user
+    mem_limit: 512m
+
+  workout:
+    build: microservices/workout
+    mem_limit: 512m
 
   mongodb:
     image: mongo:6.0.4
