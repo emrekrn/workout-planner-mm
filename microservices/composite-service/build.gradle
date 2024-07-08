@@ -24,6 +24,7 @@ repositories {
 }
 
 dependencies {
+	implementation project(":util")
 	implementation 'org.springframework.boot:spring-boot-starter-webflux'
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
