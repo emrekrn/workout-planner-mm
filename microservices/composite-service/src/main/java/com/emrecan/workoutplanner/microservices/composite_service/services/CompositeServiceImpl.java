@@ -3,11 +3,13 @@ package com.emrecan.workoutplanner.microservices.composite_service.services;
 import com.emrecan.workoutplanner.microservices.composite_service.dtos.LoginRequest;
 import com.emrecan.workoutplanner.microservices.composite_service.dtos.UserDto;
 import com.emrecan.workoutplanner.util.JwtTokenUtil;
+import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 @Service
+@Log
 public class CompositeServiceImpl implements CompositeService {
 
     RestTemplate restTemplate;
