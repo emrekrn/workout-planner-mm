@@ -16,7 +16,6 @@ public interface UserMapper {
     @Mappings({
             @Mapping(target = "id", ignore = true),
             @Mapping(target = "version", ignore = true),
-            @Mapping(target = "userId", ignore = true),
             @Mapping(target = "password", qualifiedByName = "encodePassword")
     })
     UserEntity apiToEntity(UserDto userDto);

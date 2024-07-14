@@ -15,11 +15,11 @@ public class UserEntity {
     private String id;
     @Version
     private Long version;
-
-    @Indexed(unique = true)
-    private String userId;
     @Indexed(unique = true)
     private String username;
-    private String password;
+    @Indexed(unique = true)
     private String email;
+    private String password;
+    private String firstName;
+    private String lastName;
 }
