@@ -4,6 +4,7 @@ import com.emrecan.workoutplanner.util.JwtTokenUtil;
 import com.emrecan.workoutplanner.microservices.user.persistence.LoginRequest;
 import com.emrecan.workoutplanner.microservices.user.persistence.UserDto;
 import com.emrecan.workoutplanner.microservices.user.service.UserService;
+import lombok.extern.java.Log;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin
 @RestController
 @RequestMapping("/")
+@Log
 public class AuthController {
 
     UserService userService;
@@ -33,6 +35,7 @@ public class AuthController {
     @PostMapping("/signup")
     public ResponseEntity<String> createUser(@RequestBody UserDto userDto) {
         UserDto createdUserDto = userService.createUser(userDto);
+        log.info("Created user : " + createdUserDto);
         String token = jwtTokenUtil.createToken(createdUserDto.getUsername());
         return new ResponseEntity<>(token, HttpStatus.CREATED);
     }

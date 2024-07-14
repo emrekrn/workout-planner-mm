@@ -4,6 +4,7 @@ import com.emrecan.workoutplanner.microservices.user.persistence.UserDto;
 import com.emrecan.workoutplanner.microservices.user.persistence.UserEntity;
 import com.emrecan.workoutplanner.microservices.user.mapper.UserMapper;
 import com.emrecan.workoutplanner.microservices.user.repositoriy.UserRepository;
+import lombok.extern.java.Log;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@Log
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final UserMapper mapper;
