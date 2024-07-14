@@ -5,6 +5,7 @@ import com.emrecan.workoutplanner.microservices.composite_service.dtos.UserDto;
 import com.emrecan.workoutplanner.util.JwtTokenUtil;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -45,8 +46,9 @@ public class CompositeServiceImpl implements CompositeService {
     @Override
     public String createUser(UserDto userDto) {
         String requestUrl = userServiceUrl + "/signup";
+        ResponseEntity<String> response = restTemplate.postForEntity(requestUrl, userDto, String.class);
 
-        return restTemplate.postForObject(requestUrl, userDto, String.class);
+        return response.getBody();
     }
 
 
