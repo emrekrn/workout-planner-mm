@@ -8,9 +8,6 @@ import lombok.extern.java.Log;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Service
 @Log
 public class UserServiceImpl implements UserService {
@@ -23,20 +20,6 @@ public class UserServiceImpl implements UserService {
         this.userRepository = userRepository;
         this.mapper = mapper;
         this.passwordEncoder = passwordEncoder;
-    }
-
-    @Override
-    public List<UserDto> getAllUsers() {
-        List<UserEntity> userEntities = new ArrayList<>();
-        userRepository.findAll().forEach(userEntities::add);
-
-
-        return mapper.entityListToApiList(userEntities);
-    }
-
-    @Override
-    public UserDto getUserById(String id) {
-        return mapper.entityToApi(userRepository.findById(id).get());
     }
 
     @Override
