@@ -1,6 +1,6 @@
 package com.emrecan.workoutplanner.microservices.user.service;
 
-import com.emrecan.workoutplanner.microservices.user.exceptions.UserAlreadyExistsException;
+import com.emrecan.workoutplanner.exceptions.UserConflictException;
 import com.emrecan.workoutplanner.microservices.user.persistence.UserDto;
 import com.emrecan.workoutplanner.microservices.user.persistence.UserEntity;
 import com.emrecan.workoutplanner.microservices.user.mapper.UserMapper;
@@ -24,9 +24,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDto createUser(UserDto user) throws UserAlreadyExistsException {
+    public UserDto createUser(UserDto user) throws UserConflictException {
         if (doesUsernameExist(user.getUsername()) || doesEmailExist(user.getEmail())) {
-            throw new UserAlreadyExistsException("Username or Email already exists. Username: " + user.getUsername() + " Email: " + user.getEmail());
+            throw new UserConflictException("Username or Email already exists. Username: " + user.getUsername() + " Email: " + user.getEmail());
         }
         UserEntity userEntity = mapper.apiToEntity(user);
         UserEntity savedUser = userRepository.save(userEntity);

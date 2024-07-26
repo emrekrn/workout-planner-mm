@@ -1,6 +1,6 @@
 package com.emrecan.workoutplanner.microservices.user.controller;
 
-import com.emrecan.workoutplanner.microservices.user.exceptions.UserAlreadyExistsException;
+import com.emrecan.workoutplanner.exceptions.UserConflictException;
 import com.emrecan.workoutplanner.util.JwtTokenUtil;
 import com.emrecan.workoutplanner.microservices.user.persistence.LoginRequest;
 import com.emrecan.workoutplanner.microservices.user.persistence.UserDto;
@@ -34,17 +34,10 @@ public class AuthController {
     }
 
     @PostMapping("/signup")
-    public ResponseEntity<String> createUser(@RequestBody UserDto userDto) {
-        try {
+    public ResponseEntity<String> createUser(@RequestBody UserDto userDto) throws UserConflictException {
             UserDto createdUserDto = userService.createUser(userDto);
             log.info("Created user : " + createdUserDto);
             String token = jwtTokenUtil.createToken(createdUserDto.getUsername());
             return new ResponseEntity<>(token, HttpStatus.CREATED);
-        }
-        catch (UserAlreadyExistsException e) {
-            log.warning(e.getMessage());
-            String response = "The email or the username already exists";
-            return new ResponseEntity<>(response, HttpStatus.CONFLICT);
-        }
     }
 }

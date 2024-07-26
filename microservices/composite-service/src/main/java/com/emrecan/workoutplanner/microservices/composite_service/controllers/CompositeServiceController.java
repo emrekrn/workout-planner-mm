@@ -1,5 +1,6 @@
 package com.emrecan.workoutplanner.microservices.composite_service.controllers;
 
+import com.emrecan.workoutplanner.exceptions.UserConflictException;
 import com.emrecan.workoutplanner.microservices.composite_service.dtos.LoginRequest;
 import com.emrecan.workoutplanner.microservices.composite_service.dtos.UserDto;
 import com.emrecan.workoutplanner.microservices.composite_service.services.CompositeService;
@@ -24,7 +25,7 @@ public class CompositeServiceController {
     }
 
     @PostMapping("/signup")
-    public ResponseEntity<String> signup(@RequestBody UserDto userDto) {
+    public ResponseEntity<String> signup(@RequestBody UserDto userDto) throws UserConflictException {
         return ResponseEntity.status(HttpStatus.CREATED).body(compositeService.createUser(userDto));
     }
 

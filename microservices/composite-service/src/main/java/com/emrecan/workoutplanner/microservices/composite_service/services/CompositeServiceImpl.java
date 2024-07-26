@@ -1,5 +1,6 @@
 package com.emrecan.workoutplanner.microservices.composite_service.services;
 
+import com.emrecan.workoutplanner.exceptions.UserConflictException;
 import com.emrecan.workoutplanner.microservices.composite_service.dtos.LoginRequest;
 import com.emrecan.workoutplanner.microservices.composite_service.dtos.UserDto;
 import com.emrecan.workoutplanner.util.JwtTokenUtil;
@@ -7,6 +8,7 @@ import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
 @Service
@@ -44,11 +46,17 @@ public class CompositeServiceImpl implements CompositeService {
     }
 
     @Override
-    public String createUser(UserDto userDto) {
+    public String createUser(UserDto userDto) throws UserConflictException {
         String requestUrl = userServiceUrl + "/signup";
-        ResponseEntity<String> response = restTemplate.postForEntity(requestUrl, userDto, String.class);
+        try {
+            ResponseEntity<String> response = restTemplate.postForEntity(requestUrl, userDto, String.class);
 
-        return response.getBody();
+            return response.getBody();
+        }
+        catch (HttpClientErrorException e) {
+            throw new UserConflictException("Email or username already exists");
+        }
+
     }
 
 
