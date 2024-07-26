@@ -1,6 +1,7 @@
 package com.emrecan.workoutplanner.microservices.user.controller;
 
 import com.emrecan.workoutplanner.exceptions.UserConflictException;
+import com.emrecan.workoutplanner.exceptions.UserNotFoundException;
 import com.emrecan.workoutplanner.util.JwtTokenUtil;
 import com.emrecan.workoutplanner.microservices.user.persistence.LoginRequest;
 import com.emrecan.workoutplanner.microservices.user.persistence.UserDto;
@@ -39,5 +40,19 @@ public class AuthController {
             log.info("Created user : " + createdUserDto);
             String token = jwtTokenUtil.createToken(createdUserDto.getUsername());
             return new ResponseEntity<>(token, HttpStatus.CREATED);
+    }
+
+    @PutMapping("/update")
+    public ResponseEntity<UserDto> updateUser(@RequestParam String username, @RequestBody UserDto userDto) throws UserNotFoundException {
+
+        UserDto updatedUser = userService.updateUser(username, userDto);
+
+        return new ResponseEntity<>(updatedUser, HttpStatus.OK);
+    }
+
+    @DeleteMapping
+    public ResponseEntity<Void> deleteUser(@RequestParam String username) throws UserNotFoundException {
+        userService.deleteUser(username);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }
