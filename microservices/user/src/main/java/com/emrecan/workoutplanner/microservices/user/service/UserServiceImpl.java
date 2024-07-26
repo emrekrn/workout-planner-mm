@@ -1,6 +1,7 @@
 package com.emrecan.workoutplanner.microservices.user.service;
 
 import com.emrecan.workoutplanner.exceptions.UserConflictException;
+import com.emrecan.workoutplanner.exceptions.UserNotFoundException;
 import com.emrecan.workoutplanner.microservices.user.persistence.UserDto;
 import com.emrecan.workoutplanner.microservices.user.persistence.UserEntity;
 import com.emrecan.workoutplanner.microservices.user.mapper.UserMapper;
@@ -37,6 +38,37 @@ public class UserServiceImpl implements UserService {
     public boolean isValidUser(String username, String password) {
         UserEntity userEntity = userRepository.findByUsername(username);
         return !(userEntity == null) && checkPasswordsMatch(userEntity.getPassword(), password);
+    }
+
+    @Override
+    public UserDto updateUser(String username, UserDto user) throws UserNotFoundException {
+        if (doesUsernameExist(username)) {
+            UserEntity userEntity = userRepository.findByUsername(username);
+
+            userEntity.setUsername(user.getUsername());
+            userEntity.setPassword(passwordEncoder.encode(user.getPassword()));
+            userEntity.setEmail(user.getEmail());
+            userEntity.setFirstName(user.getFirstname());
+            userEntity.setLastName(user.getLastname());
+
+            userRepository.save(userEntity);
+            return mapper.entityToApi(userEntity);
+        }
+        else {
+            throw new UserNotFoundException("Username does not exist");
+        }
+
+    }
+
+    @Override
+    public void deleteUser(String username) throws UserNotFoundException {
+        if (doesUsernameExist(username)) {
+            UserEntity userEntity = userRepository.findByUsername(username);
+            userRepository.delete(userEntity);
+        }
+        else {
+            throw new UserNotFoundException("Username does not exist");
+        }
     }
 
     private boolean checkPasswordsMatch(String usersPassword, String enteredPassword) {
