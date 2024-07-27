@@ -24,8 +24,8 @@ public class UserController {
         return ResponseEntity.ok(userDto);
     }
 
-    @PutMapping("/update")
-    public ResponseEntity<UserDto> updateUser(@RequestParam String username, @RequestBody UserDto userDto) throws UserNotFoundException {
+    @PutMapping("/update/{username}")
+    public ResponseEntity<UserDto> updateUser(@PathVariable String username, @RequestBody UserDto userDto) throws UserNotFoundException {
 
         UserDto updatedUser = userService.updateUser(username, userDto);
 

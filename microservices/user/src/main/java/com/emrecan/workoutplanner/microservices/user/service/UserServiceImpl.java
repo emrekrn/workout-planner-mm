@@ -59,8 +59,8 @@ public class UserServiceImpl implements UserService {
             userEntity.setUsername(user.getUsername());
             userEntity.setPassword(passwordEncoder.encode(user.getPassword()));
             userEntity.setEmail(user.getEmail());
-            userEntity.setFirstName(user.getFirstname());
-            userEntity.setLastName(user.getLastname());
+            userEntity.setFirstname(user.getFirstname());
+            userEntity.setLastname(user.getLastname());
 
             userRepository.save(userEntity);
             return mapper.entityToApi(userEntity);
