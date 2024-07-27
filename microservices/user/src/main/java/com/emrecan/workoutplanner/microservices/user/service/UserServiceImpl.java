@@ -25,9 +25,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDto getUserByUsername(String username) {
-        UserEntity userEntity = userRepository.findByUsername(username);
-        return mapper.entityToApi(userEntity);
+    public UserDto getUserByUsername(String username) throws UserNotFoundException {
+        if (doesUsernameExist(username)) {
+            UserEntity userEntity = userRepository.findByUsername(username);
+            return mapper.entityToApi(userEntity);
+        }
+        else {
+            throw new UserNotFoundException("Username does not exist");
+        }
     }
 
     @Override
