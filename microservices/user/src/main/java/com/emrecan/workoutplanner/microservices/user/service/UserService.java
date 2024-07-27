@@ -7,6 +7,7 @@ import com.emrecan.workoutplanner.microservices.user.persistence.UserDto;
 
 public interface UserService {
 
+    UserDto getUserByUsername(String username) throws UserNotFoundException;
     UserDto createUser(UserDto user) throws UserConflictException;
     boolean isValidUser(String username, String password);
     UserDto updateUser(String username, UserDto user) throws UserNotFoundException;

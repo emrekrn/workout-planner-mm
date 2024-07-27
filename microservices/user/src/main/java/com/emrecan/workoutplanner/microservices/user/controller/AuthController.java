@@ -41,18 +41,4 @@ public class AuthController {
             String token = jwtTokenUtil.createToken(createdUserDto.getUsername());
             return new ResponseEntity<>(token, HttpStatus.CREATED);
     }
-
-    @PutMapping("/update")
-    public ResponseEntity<UserDto> updateUser(@RequestParam String username, @RequestBody UserDto userDto) throws UserNotFoundException {
-
-        UserDto updatedUser = userService.updateUser(username, userDto);
-
-        return new ResponseEntity<>(updatedUser, HttpStatus.OK);
-    }
-
-    @DeleteMapping
-    public ResponseEntity<Void> deleteUser(@RequestParam String username) throws UserNotFoundException {
-        userService.deleteUser(username);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-    }
 }

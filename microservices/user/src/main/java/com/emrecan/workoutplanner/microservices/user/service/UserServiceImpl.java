@@ -25,6 +25,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public UserDto getUserByUsername(String username) {
+        UserEntity userEntity = userRepository.findByUsername(username);
+        return mapper.entityToApi(userEntity);
+    }
+
+    @Override
     public UserDto createUser(UserDto user) throws UserConflictException {
         if (doesUsernameExist(user.getUsername()) || doesEmailExist(user.getEmail())) {
             throw new UserConflictException("Username or Email already exists. Username: " + user.getUsername() + " Email: " + user.getEmail());
